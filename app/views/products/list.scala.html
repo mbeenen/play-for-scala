@@ -1,4 +1,5 @@
-@(products: List[Product])(implicit lang: Lang)
+@import play.api.Configuration
+@(products: List[Product])(implicit messages: Messages, configuration: Configuration)
 @main(Messages("application.name")) {
     <dl class="products">
     @for(product <- products) {

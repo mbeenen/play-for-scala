@@ -1,4 +1,5 @@
-@(title: String)(content: Html)(implicit lang: Lang)
+@import play.api.Configuration
+@(title: String)(content: Html)(implicit messages: Messages, configuration: Configuration)
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,11 +16,13 @@
                     <div class="container">
                         <a class="brand" href="@routes.HomeController.index()">
                         @Messages("application.name")
-                        </a> </div>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="container">
-            @content
+                @content
+                @debug()
             </div>
         </div>
     </body>
