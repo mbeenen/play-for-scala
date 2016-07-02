@@ -16,4 +16,5 @@ object Product {
       "Zebra Length 28mm Assorted 150 Pack")
   )
   def findAll = products.toList.sortBy(_.ean)
+  def findByEan(ean: Long): Option[Product] = products.find(_.ean == ean)
 }

@@ -1,5 +1,5 @@
 @import play.api.Configuration
-@(title: String)(content: Html)(implicit messages: Messages, configuration: Configuration)
+@(title: String)(content: Html)(implicit messages: Messages, configuration: Configuration, flash: Flash)
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,10 +17,34 @@
                         <a class="brand" href="@routes.HomeController.index()">
                         @Messages("application.name")
                         </a>
+                        <ul class="nav">
+                            <li class="divider-vertical"></li>
+                            <li class="active">
+                                <a href="@routes.Products.list()">
+                                @Messages("products.list.navigation")
+                                </a> </li>
+                            <li class="active">
+                                <a href="@routes.Products.newProduct()">
+                                    <i class="icon-plus icon-white"></i>
+                                    @Messages("products.new.command")
+                                </a>
+                            </li>
+                            <li class="divider-vertical"></li>
+                        </ul>
                     </div>
                 </div>
             </div>
             <div class="container">
+                @if(flash.get("success").isDefined){
+                    <div class="alert alert-success">
+                    @flash.get("success")
+                    </div> }
+                @if(flash.get("error").isDefined){
+                    <div class="alert alert-error">
+                    @flash.get("error")
+                    </div>
+                }
+
                 @content
                 @debug()
             </div>
